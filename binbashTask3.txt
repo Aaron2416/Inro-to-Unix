@@ -1,0 +1,25 @@
+#!/bin/bash
+
+
+/home/links &
+
+
+kill -STOP $!
+
+(sleep 60 ; sleep 60 ; ls -alR / > flist &) &
+
+
+fg
+
+
+kill -STOP %1
+
+# Kill links
+kill %1
+
+
+if ps -p $! &>/dev/null; then
+    echo "The sleep command is still running."
+else
+    echo "The sleep command has finished."
+fi
